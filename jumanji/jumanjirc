@@ -1,0 +1,8 @@
+#
+#	JumanJi Configuration File
+#
+
+set homepage https://www.google.be
+set font lime 9
+set download-dir ~/
+

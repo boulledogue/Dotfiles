@@ -1,0 +1,2 @@
+#! /bin/zsh
+feh --bg-scale --randomize --no-fehbg ~/.config/wallpaper/*

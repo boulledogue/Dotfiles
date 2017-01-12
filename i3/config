@@ -1,0 +1,112 @@
+#
+#	I3 Config File
+#
+
+#### Theme
+## Font
+font pango:lime 8
+## Windows
+new_window pixel 2
+new_float  pixel 2 
+gaps inner 5
+gaps outer 5
+focus_follows_mouse no
+# Class			Border     Bckgrnd     Text	Indicator
+client.focused		#2C3E50F2  #2C3E50F2   #ECF0F1  #2C3E50F2
+client.unfocused	#34495EF2  #34495EF2   #ECF0F1	#34495EF2
+## Bar
+bar {
+	i3bar_command  i3bar -t
+        status_command i3status -c ~/.config/i3/i3status.conf
+	font pango:lime 8
+	colors {
+	   background #EEEEEE
+	   statusline #000000
+	   # Class		Border   Bckgrnd   Text
+	   focused_workspace	#EEEEEE  #EEEEEE   #000000
+	   active_workspace	#EEEEEE  #EEEEEE   #000000
+	   inactive_workspace	#EEEEEE  #EEEEEE   #000000
+	}
+}
+
+#### ShortCut
+set $mod Mod4
+### I3 Global ShortCut
+## Focus
+# Change Focus
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+# Move Focused Window
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+## Window Mode
+# Tiling / Floating
+floating_modifier $mod 
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+space focus mode_toggle 
+# Fullscreen Mode 
+bindsym $mod+f fullscreen toggle
+# Resize
+mode "resize" {
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+## Layout & Disposition
+# Split Mode
+bindsym $mod+h split h
+bindsym $mod+v split v
+# Container Layout
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+## Workspace
+# Switch to Workspace
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+# Move Container to Workspace
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+### I3 Internal Shortcut
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Do you really want to exit i3 ?' -b 'Yes, exit i3' 'i3-msg exit'"
+
+### I3 Apps Shortcut
+## Global Apps
+# Kill Window
+bindsym $mod+Shift+q kill
+## Other
+bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+i exec jumanji
+bindsym $mod+o exec zathura
+# Media
+bindsym F10 exec amixer set Master toggle
+bindsym F11 exec amixer set Master 1%- unmute
+bindsym F12 exec amixer set Master 1%+ unmute
+# Mpd
+bindsym $mod+F10 exec mpc toggle
+bindsym $mod+F11 exec mpc prev
+bindsym $mod+F12 exec mpc next
+# Wallpaper
+bindsym $mod+d exec ~/.config/fehbg
+
+#### Autostart -- Exec
+exec --no-startup-id setxkbmap be
+exec --no-startup-id ~/.config/fehbg
+exec --no-startup-id compton
+exec --no-startup-id mpd ~/.config/mpd/mpd.conf
